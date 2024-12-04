@@ -37,3 +37,49 @@ DELETE FROM recette
 WHERE id_recette = 2
 
 /*Requete 8*/
+SELECT nom_recette, SUM(quantity * prix) AS total
+FROM recette
+INNER JOIN ingredients_recette ON recette.id_recette=ingredients_recette.id_recette
+INNER JOIN ingredients ON ingredients_recette.id_ingredient=ingredients.id_ingredients
+WHERE recette.id_recette = 5
+
+
+SELECT nom_recette, SUM(quantity * prix) AS total
+FROM recette
+INNER JOIN ingredients_recette ON recette.id_recette=ingredients_recette.id_recette
+INNER JOIN ingredients ON ingredients_recette.id_ingredient=ingredients.id_ingredients
+GROUP BY recette.id_recette ORDER BY total DESC
+
+/*Requete 9*/
+SELECT nom_recette, quantity, prix
+FROM recette
+INNER JOIN ingredients_recette ON recette.id_recette=ingredients_recette.id_recette
+INNER JOIN ingredients ON ingredients_recette.id_ingredient=ingredients.id_ingredients
+WHERE recette.id_recette = 5
+
+/*Requete 10*/
+INSERT INTO ingredients (nom_ingredient, unite, prix)
+VALUES ('poivre', 'cac', '2.5')
+
+/*Requete 11*/
+UPDATE ingredients
+SET prix = '5.40'
+WHERE ingredients.id_ingredients = 12
+
+/*Requete 12*/
+SELECT nom_categorie, COUNT(nom_recette)
+FROM recette
+INNER JOIN categorie ON recette.id_categorie=categorie.id_categorie
+GROUP BY nom_categorie
+
+
+/*Requete 13*/
+SELECT nom_recette FROM recette
+WHERE nom_recette LIKE '%framboise%'
+
+/*Requete 14*/
+UPDATE recette
+SET temps_preparation = temps_preparation - 5
+
+/*Requete 15*/
+
