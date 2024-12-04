@@ -81,7 +81,7 @@ WHERE nom_recette LIKE '%framboise%'
 UPDATE recette
 SET temps_preparation = temps_preparation - 5
 
-/*Requete 15*/
+/*Requete 15 - a refaire pas bon*/
 SELECT nom_recette 
 FROM recette
 INNER JOIN ingredients_recette ON recette.id_recette=ingredients_recette.id_recette
