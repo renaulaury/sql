@@ -82,4 +82,10 @@ UPDATE recette
 SET temps_preparation = temps_preparation - 5
 
 /*Requete 15*/
+SELECT nom_recette 
+FROM recette
+INNER JOIN ingredients_recette ON recette.id_recette=ingredients_recette.id_recette
+INNER JOIN ingredients ON ingredients_recette.id_ingredient=ingredients.id_ingredients
+WHERE prix < 2
 
+/*Requete 16*/
