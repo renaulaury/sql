@@ -128,3 +128,17 @@ HAVING total >= ALL (
 	INNER JOIN ingredient ON ingredients_recette.id_ingredient = ingredient.id_ingredient
 	GROUP BY recette.id_recette
 )
+
+/*Requete 20 bis - création d'une bdd virtuelle*/
+/*CREATE VIEW prix_par_recette AS
+	SELECT nom_recette, SUM(ingredient.prix * ingredients_recette.quantity) AS total
+	FROM recette
+	INNER JOIN ingredients_recette ON recette.id_recette = ingredients_recette.id_recette
+	INNER JOIN ingredient ON ingredients_recette.id_ingredient = ingredient.id_ingredient
+	GROUP BY nom_recette;*/
+
+SELECT total
+FROM prix_par_recette
+WHERE total = (SELECT MAX(total) FROM (prix_par_recette))
+
+/*Ne pas oublier de rafraichir*/
