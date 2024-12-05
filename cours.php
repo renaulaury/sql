@@ -25,7 +25,7 @@
     $recipesStatement = $mysqlClient->prepare('SELECT * FROM recette'); /*requete*/
     $recipesStatement->execute(); 
     $recipe = $recipesStatement->fetchAll();
-
+        // ou
     $sqlQuery = 'SELECT nom_recette, temps_preparation FROM recette';
     $recipesStatement = $mysqlClient->prepare($sqlQuery);
     $recipesStatement->execute();

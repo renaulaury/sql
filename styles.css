@@ -1,0 +1,13 @@
+ nav {
+    text-align: center;
+   
+}
+
+ .line {
+    border: 1px solid violet;
+ }
+
+ tbody tr {
+    display: flex;
+ }
+
