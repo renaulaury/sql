@@ -81,11 +81,27 @@ WHERE nom_recette LIKE '%framboise%'
 UPDATE recette
 SET temps_preparation = temps_preparation - 5
 
-/*Requete 15 - a refaire pas bon*/
-SELECT nom_recette 
-FROM recette
-INNER JOIN ingredients_recette ON recette.id_recette=ingredients_recette.id_recette
-INNER JOIN ingredients ON ingredients_recette.id_ingredient=ingredients.id_ingredients
-WHERE prix < 2
+/*Requete 15*/
+SELECT recette.nom_recette
+FROM recette 
+WHERE recette.id_recette NOT IN (
+	SELECT ingredients_recette.id_recette
+ 	FROM ingredients_recette 
+ 	INNER JOIN ingredient
+	ON ingredients_recette.id_ingredient = ingredient.id_ingredient
+   WHERE ingredient.prix > 2 
+	AND ingredients_recette.id_recette = recette.id_recette
+)
 
 /*Requete 16*/
+SELECT nom_recette, temps_preparation
+FROM recette
+WHERE temps_preparation < 30
+
+/*Requete 17*/
+SELECT nom_recette, id_ingredient
+FROM recette
+LEFT JOIN ingredients_recette ON recette.id_recette = ingredients_recette.id_recette
+WHERE id_ingredient IS NULL
+
+/*Requete 18*/
