@@ -72,7 +72,6 @@ FROM recette
 INNER JOIN categorie ON recette.id_categorie=categorie.id_categorie
 GROUP BY nom_categorie
 
-
 /*Requete 13*/
 SELECT nom_recette FROM recette
 WHERE nom_recette LIKE '%framboise%'
@@ -105,3 +104,21 @@ LEFT JOIN ingredients_recette ON recette.id_recette = ingredients_recette.id_rec
 WHERE id_ingredient IS NULL
 
 /*Requete 18*/
+SELECT nom_ingredient, COUNT(ingredient.id_ingredient) AS nb
+FROM recette
+INNER JOIN ingredients_recette ON recette.id_recette = ingredients_recette.id_recette
+INNER JOIN ingredient ON ingredients_recette.id_ingredient = ingredient.id_ingredient
+GROUP BY nom_ingredient
+HAVING nb > 3
+
+/*Requete 19*/
+INSERT INTO ingredients_recette (id_ingredient, id_recette, quantity)
+VALUES ("31", "121", "2")
+
+/*Requete 20*/
+SELECT nom_recette, SUM(prix * quantity) AS total
+FROM recette
+INNER JOIN ingredients_recette ON recette.id_recette = ingredients_recette.id_recette
+INNER JOIN ingredient ON ingredients_recette.id_ingredient = ingredient.id_ingredient
+GROUP BY nom_recette
+ORDER BY total DESC
