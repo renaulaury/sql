@@ -121,4 +121,10 @@ FROM recette
 INNER JOIN ingredients_recette ON recette.id_recette = ingredients_recette.id_recette
 INNER JOIN ingredient ON ingredients_recette.id_ingredient = ingredient.id_ingredient
 GROUP BY nom_recette
-ORDER BY total DESC
+HAVING total >= ALL (
+	SELECT SUM(prix * quantity) 
+	FROM recette
+	INNER JOIN ingredients_recette ON recette.id_recette = ingredients_recette.id_recette
+	INNER JOIN ingredient ON ingredients_recette.id_ingredient = ingredient.id_ingredient
+	GROUP BY recette.id_recette
+)
