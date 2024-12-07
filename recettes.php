@@ -30,7 +30,7 @@
                 die('Erreur : ' . $e->getMessage());
             }
 
-            $sqlQuery = 'SELECT nom_recette, id_categorie, temps_preparation FROM recette';
+            $sqlQuery = 'SELECT id_recette, nom_recette, id_categorie, temps_preparation FROM recette';
             $recipesStatement = $bdd->query($sqlQuery);
             // $recipesStatement = $mysqlClient->prepare($sqlQuery);
             // $recipesStatement->execute();
@@ -46,19 +46,16 @@
                 </thead>
 
                 <tbody>
-
-
                     <?php
                     foreach ($recipes as $recipe) {
                     ?>
                         <tr>
-                            <td class="name"><a href="./detail_recette.php"><?php echo $recipe['nom_recette']; ?></a></td>
+                            <td class="name"><?php echo "<a href='./detail_recette.php?id=" . $recipe['id_recette'] . "'>" . $recipe['nom_recette'] . "</a>"; ?></td>
                             <td><?php echo $recipe['id_categorie']; ?></td>
                             <td><?php echo $recipe['temps_preparation']; ?></td>
                         </tr>
                     <?php
                     } ?>
-
                 </tbody>
             </table>
 
