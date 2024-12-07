@@ -1,13 +1,26 @@
- nav {
-    text-align: center;
-   
+/* * {
+   background-color: red;
+ } */
+
+nav {
+    text-align: center;   
+}
+
+h1 {
+   text-align: center;   
 }
 
  .line {
     border: 1px solid violet;
  }
 
- tbody tr {
-    display: flex;
- }
+tr {
+   text-align: center;
+}
+
+.name {
+   text-align: left;
+}
+
+
 
