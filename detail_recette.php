@@ -43,40 +43,51 @@
                 $recipesStatement->execute(); //Execute la requete préparée
 
                 // Récupération des données de la recette
-                $recette = $recipesStatement->fetch(PDO::FETCH_ASSOC); //tableau associatif - - clés sont noms des colonnes
+                $recettes = $recipesStatement->fetch(PDO::FETCH_ASSOC); //tableau associatif - - clés sont noms des colonnes
 
                 /*Récupération table categorie*/
-                $idCategorie = intval($_GET['id']); // Sécurise l'entrée utilisateur
                 // Prépare une requête pour récupérer la categorie spécifique
                 $sqlQueryCategorie = 'SELECT * FROM categorie WHERE id_categorie = :id'; //Selectionne
                 $catStatement = $bdd->prepare($sqlQueryCategorie); //Prépare requete sql
-                $catStatement->bindParam(':id', $idCategorie, PDO::PARAM_INT); //Le parametre :id sera remplacé par la valeur $idrecette - sera un entier
+                // $catStatement->bindParam(':id', $idCategorie, PDO::PARAM_INT); //Le parametre :id sera remplacé par la valeur $idrecette - sera un entier
+                $catStatement->bindParam(':id', $recettes['id_categorie'], PDO::PARAM_INT);
                 $catStatement->execute(); //Execute la requete préparée
 
                 // Récupération des données de la recette
                 $categorie = $catStatement->fetch(PDO::FETCH_ASSOC); //tableau associatif - - clés sont noms des colonnes
 
                 /*Récupération table ingredient*/
-                $idIngredient = intval($_GET['id']); // Sécurise l'entrée utilisateur
                 // Prépare une requête pour récupérer les ingredients spécifiques
-                $sqlQueryIngredient = 'SELECT * FROM ingredient WHERE id_ingredient = :id'; //Selectionne
-                $ingStatement = $bdd->prepare($sqlQueryIngredient); //Prépare requete sql
-                $ingStatement->bindParam(':id', $idingredient, PDO::PARAM_INT); //Le parametre :id sera remplacé par la valeur $idrecette - sera un entier
+                $sqlQueryIngredients =
+                    'SELECT * FROM ingredients_recette 
+                    INNER JOIN ingredient 
+                    ON ingredients_recette.id_ingredient = ingredient.id_ingredient
+                    WHERE ingredients_recette.id_recette = :id';
+                $ingStatement = $bdd->prepare($sqlQueryIngredients); //Prépare requete sql
+                $ingStatement->bindParam(':id', $idRecette, PDO::PARAM_INT); //Le parametre :id sera remplacé par la valeur $idrecette - sera un entier
                 $ingStatement->execute(); //Execute la requete préparée
 
                 // Récupération des données de la recette
-                $ingredient = $ingStatement->fetch(PDO::FETCH_ASSOC); //tableau associatif - - clés sont noms des colonnes
+                $ingredients = $ingStatement->fetchAll(PDO::FETCH_ASSOC); //tableau associatif - - clés sont noms des colonnes
 
 
                 // Vérifie si une recette a été trouvée
-                if ($recette) {
+                if ($recettes) {
             ?>
-                    <h1>Détail de la recette : <?php echo $recette['nom_recette']; ?></h1>
+                    <h1>Détail de la recette : <?php echo $recettes['nom_recette']; ?></h1>
                     <section>
-                        <p><strong>Ingredients :</strong> <?php echo $ingredient['nom_ingredient']; ?></p>
                         <p><strong>Categorie :</strong> <?php echo $categorie['nom_categorie']; ?></p>
-                        <p><strong>Temps de préparation :</strong> <?php echo $recette['temps_preparation']; ?> minutes</p>
-                        <p><strong>Instructions :</strong> <?php echo $recette['instructions']; ?></p>
+                        <p><strong>Temps de préparation :</strong> <?php echo $recettes['temps_preparation']; ?> minutes</p>
+
+                        <p><strong>Ingredients :</strong>
+                        <ul>
+                            <?php foreach ($ingredients as $ingredient) {
+                                echo "<li>" . $ingredient['nom_ingredient'] . "</li>";
+                            }
+                            ?>
+                        </ul>
+                        </p>
+                        <p><strong>Instructions :</strong> <?php echo $recettes['instructions']; ?></p>
                     </section>
             <?php
                 } else {

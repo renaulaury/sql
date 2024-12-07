@@ -31,7 +31,7 @@
             }
 
             $sqlQuery = 'SELECT id_recette, nom_recette, id_categorie, temps_preparation FROM recette';
-            $recipesStatement = $bdd->query($sqlQuery);
+            $recipesStatement = $bdd->query($sqlQuery); //Pour requete simple sans parametre
             // $recipesStatement = $mysqlClient->prepare($sqlQuery);
             // $recipesStatement->execute();
             $recipes = $recipesStatement->fetchAll(); //Création tableau
