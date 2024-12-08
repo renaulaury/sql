@@ -73,7 +73,7 @@
             if ($recettes) {
         ?>
 
-                <h1>Détail de la recette : </br><?php echo $recettes['nom_recette']; ?></h1>
+                <h1>Détail de la recette : </br><span><?php echo $recettes['nom_recette']; ?></span></h1>
 
                 <section>
                     <p class="title"><strong>Categorie :</strong> <?php echo $categorie['nom_categorie']; ?></p>

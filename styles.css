@@ -81,8 +81,8 @@ li {
    width: 5%;
 }
 
-td:: {
-   
+td::first-letter {   
+   text-transform: uppercase; 
 }
 
 /*Détail Recette*/
@@ -93,6 +93,10 @@ nav {
 
 nav a {
    color: pink;
+}
+
+span::first-letter {   
+   text-transform: uppercase; 
 }
 
 .title {
