@@ -73,21 +73,27 @@
             if ($recettes) {
         ?>
 
-                <h1>Détail de la recette : </br><span><?php echo $recettes['nom_recette']; ?></span></h1>
+                <h1>Détail de la recette :<?php echo ucfirst($recettes['nom_recette']); ?></p>
+                </h1>
 
-                <section>
-                    <p class="title"><strong>Categorie :</strong> <?php echo $categorie['nom_categorie']; ?></p>
-                    <p class="title"><strong>Temps de préparation :</strong> <?php echo $recettes['temps_preparation']; ?> minutes</p>
+                <section class="section_detail">
+                    <div>
+                        <p><strong>Catégorie :</strong><?php echo ucfirst($categorie['nom_categorie']); ?></p>
+                        <p class="title"><strong>Temps de préparation :</strong> <?php echo $recettes['temps_preparation']; ?> minutes</p>
 
-                    <p class="title ing"><strong>Ingredients :</strong>
-                    <ul>
-                        <?php foreach ($ingredients as $ingredient) {
-                            echo "<li>" . $ingredient['quantity'] . " " . $ingredient['unite_de_mesure'] . " " . $ingredient['nom_ingredient'] . "</li>";
-                        }
-                        ?>
-                    </ul>
-                    </p>
-                    <p class="title"><strong>Instructions :</strong></br></br> <?php echo $recettes['instructions']; ?></p>
+                        <p class="title ing"><strong>Ingrédients :</strong>
+
+                        <ul>
+                            <?php foreach ($ingredients as $ingredient) {
+                                echo "<li>" . $ingredient['quantity'] . " " . $ingredient['unite_de_mesure'] . " " . $ingredient['nom_ingredient'] . "</li>";
+                            }
+                            ?>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <p><strong>Instructions :</strong></br></br> <?php echo $recettes['instructions']; ?></p>
+                    </div>
                 </section>
         <?php
             } else {

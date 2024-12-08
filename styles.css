@@ -27,7 +27,7 @@ h1 {
 }
 
 main {
-   width : 60%;
+   max-width : 60%;
    margin-left: 5%;  
 }
 
@@ -69,12 +69,12 @@ tbody td {
 }
 
 .ing {
-   padding: 0.5%;
+   padding-bottom: 3%;
 }
 
 li {
    list-style-type: none;
-   padding: 0 0 0.5% 3%;
+   padding: 0 0 0.5% 5%;
 }
 
 .tps {
@@ -95,12 +95,15 @@ nav a {
    color: pink;
 }
 
-span::first-letter {   
-   text-transform: uppercase; 
+.title {
+   padding-top: 8%;
 }
 
-.title {
-   padding-top: 3%;
+.section_detail {
+   /* width: 100%; */
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
 }
 
 
