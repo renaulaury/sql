@@ -1,26 +1,44 @@
 /* * {
-   background-color: red;
- } */
+   margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #FFB347, #FFDAB9, #98FB98);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    color: #333;
+ }  */
 
+* {
+   background-color: blueviolet;
+}
+
+/*Général*/
+h1 {
+   text-align: center; 
+   color: blue;  
+}
+
+.line {
+   border: 1px solid violet;
+}
+
+tr {
+  text-align: center;
+}
+
+.name {
+  text-align: left;
+}
+
+/*Détail Recette*/
 nav {
     text-align: center;   
 }
 
-h1 {
-   text-align: center;   
-}
 
- .line {
-    border: 1px solid violet;
- }
+/*Listing recettes*/
 
-tr {
-   text-align: center;
-}
 
-.name {
-   text-align: left;
-}
+
 
 
 
