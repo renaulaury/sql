@@ -30,7 +30,11 @@
                 die('Erreur : ' . $e->getMessage());
             }
 
-            $sqlQuery = 'SELECT * FROM recette ORDER BY nom_recette ASC';
+            $sqlQuery = 'SELECT * FROM recette
+                INNER JOIN categorie
+                ON recette.id_categorie = categorie.id_categorie
+                ORDER BY recette.nom_recette ASC';
+
             $recipesStatement = $bdd->query($sqlQuery); //Pour requete simple sans parametre
             // $recipesStatement = $mysqlClient->prepare($sqlQuery);
             // $recipesStatement->execute();
@@ -51,14 +55,7 @@
                     ?>
                         <tr>
                             <td class="name"><?php echo "<a href='./detail_recette.php?id=" . $recipe['id_recette'] . "'>" . $recipe['nom_recette'] . "</a>"; ?></td>
-                            <td><?php
-                                if ($recipe['id_categorie'] == 1) {
-                                    echo "Entrée";
-                                } elseif ($recipe['id_categorie'] == 2) {
-                                    echo "Plat";
-                                } else {
-                                    echo "Dessert";
-                                }; ?></td>
+                            <td><?php echo $recipe['nom_categorie'] ?></td>
                             <td><?php echo $recipe['temps_preparation']; ?></td>
                         </tr>
                     <?php
