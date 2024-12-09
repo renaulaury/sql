@@ -30,7 +30,8 @@
                 die('Erreur : ' . $e->getMessage());
             }
 
-            $sqlQuery = 'SELECT * FROM recette
+            $sqlQuery = 'SELECT id_recette, nom_recette, nom_categorie, temps_preparation 
+                FROM recette
                 INNER JOIN categorie
                 ON recette.id_categorie = categorie.id_categorie
                 ORDER BY recette.nom_recette ASC';

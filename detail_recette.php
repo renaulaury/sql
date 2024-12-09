@@ -57,7 +57,8 @@
             /*Récupération table ingredient*/
             // Prépare une requête pour récupérer les ingredients spécifiques
             $sqlQueryIngredients =
-                'SELECT * FROM ingredients_recette 
+                'SELECT id_recette, unite_de_mesure, quantity, nom_ingredient
+                FROM ingredients_recette 
                 INNER JOIN ingredient 
                 ON ingredients_recette.id_ingredient = ingredient.id_ingredient
                 WHERE ingredients_recette.id_recette = :id';
